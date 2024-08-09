@@ -5,15 +5,16 @@ import { MODAL_TYPES } from "../../common/constants/modalTypes";
 
 export const Modal = ({
   type = MODAL_TYPES.Create,
-  handleSubmit = () => console.log("submit"),
+  item = {},
+  handleCreate = () => console.log("create"),
   onClose = () => console.log("close"),
 }) => {
   const [request, setRequest] = useState({
-    nickName: "",
-    bio: "",
-    avatarUrl: "",
-    age: 0,
-    groupId: 0,
+    nickName: item.NickName ?? "",
+    bio: item.Bio ?? "",
+    avatarUrl: item.AvatarURL ?? "",
+    age: item.Age ?? 0,
+    groupId: item.GroupId ?? 0,
   });
 
   const handleInput = (event) => {
@@ -21,8 +22,8 @@ export const Modal = ({
     setRequest((previous) => ({ ...previous, [name]: value }));
   };
 
-  const onSubmit = () => {
-    handleSubmit(request);
+  const onSubmitCreate = () => {
+    handleCreate(request);
   };
 
   return (
@@ -34,7 +35,7 @@ export const Modal = ({
             : "modal-box modal-edit"
         }
       >
-        {/* <pre>{JSON.stringify(request, null, 2)}</pre> */}
+        {/* <pre>{JSON.stringify(item, null, 2)}</pre> */}
         <div className="modal-head">
           <h4>
             {type === MODAL_TYPES.Create ? "create new member" : "edit member"}
@@ -47,7 +48,7 @@ export const Modal = ({
               <input
                 type="text"
                 name="nickName"
-                value={request.nickname}
+                value={request.nickName}
                 onChange={handleInput}
               />
             </label>
@@ -87,11 +88,10 @@ export const Modal = ({
                 onChange={handleInput}
               />
             </label>
-            {/* <Button style="icon" text={<Plus />} action={toggleModal} /> */}
           </form>
         </div>
         <div className="modal-foot">
-          <Button text="submit" action={onSubmit} />
+          <Button text="submit" action={onSubmitCreate} />
           <Button text="close" style="cancel" action={onClose} />
         </div>
       </div>

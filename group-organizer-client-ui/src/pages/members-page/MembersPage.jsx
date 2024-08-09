@@ -2,7 +2,7 @@ import "./membersPage.css";
 
 import { useEffect, useRef, useState } from "react";
 
-import { create, getHealth } from "../../services/healthServices";
+import { create, getHealth, update } from "../../services/healthServices";
 
 import { Button } from "../../components/button/Button";
 import { Plus } from "../../assets/icons/plus/Plus";
@@ -16,6 +16,7 @@ export const MembersPage = () => {
   const [isModal, setIsModal] = useState(false);
 
   const modalType = useRef(MODAL_TYPES.Create);
+  const modalItem = useRef({});
 
   useEffect(() => {
     getItems();
@@ -26,9 +27,15 @@ export const MembersPage = () => {
     setItems(result.data);
   };
 
-  const handleSubmit = async (request = {}) => {
+  const handleCreate = async (request = {}) => {
     const result = await create(request);
     console.log("member created:", result.data);
+    toggleModal();
+  };
+
+  const handleEdit = async (id = 0, request = {}) => {
+    const result = await update(id, request);
+    console.log("member edited:", result.data);
     toggleModal();
   };
 
@@ -45,6 +52,7 @@ export const MembersPage = () => {
         text={<Plus />}
         action={() => {
           modalType.current = MODAL_TYPES.Create;
+          modalItem.current = {};
           toggleModal();
         }}
       />
@@ -52,7 +60,8 @@ export const MembersPage = () => {
       {isModal && (
         <Modal
           type={modalType.current}
-          handleSubmit={handleSubmit}
+          item={modalItem.current}
+          handleCreate={handleCreate}
           onClose={toggleModal}
         />
       )}
@@ -69,6 +78,7 @@ export const MembersPage = () => {
               <Button
                 action={() => {
                   modalType.current = MODAL_TYPES.Edit;
+                  modalItem.current = item;
                   toggleModal();
                 }}
                 style="icon"
