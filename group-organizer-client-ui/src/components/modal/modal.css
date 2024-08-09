@@ -28,3 +28,11 @@
   justify-content: center;
   align-items: center;
 }
+
+.modal-create {
+  border: 2px solid rgb(95, 219, 79);
+}
+
+.modal-edit {
+  border: 2px solid rgb(79, 163, 219);
+}

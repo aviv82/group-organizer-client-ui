@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Button } from "../button/Button";
 import "./modal.css";
+import { MODAL_TYPES } from "../../common/constants/modalTypes";
 
 export const Modal = ({
+  type = MODAL_TYPES.Create,
   handleSubmit = () => console.log("submit"),
   onClose = () => console.log("close"),
 }) => {
@@ -25,10 +27,18 @@ export const Modal = ({
 
   return (
     <div className="modal-bg">
-      <div className="modal-box">
+      <div
+        className={
+          type === MODAL_TYPES.Create
+            ? "modal-box modal-create"
+            : "modal-box modal-edit"
+        }
+      >
         {/* <pre>{JSON.stringify(request, null, 2)}</pre> */}
         <div className="modal-head">
-          <h4>create member</h4>
+          <h4>
+            {type === MODAL_TYPES.Create ? "create new member" : "edit member"}
+          </h4>
         </div>
         <div className="modal-body">
           <form>
