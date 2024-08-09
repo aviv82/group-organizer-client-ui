@@ -1,0 +1,16 @@
+.icon-plus {
+  fill: rgb(133, 242, 103);
+  transition: fill 2s ease;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+}
+
+.icon-plus:hover {
+  fill: rgb(214, 249, 204);
+}
+
+.icon-plus:active {
+  transition: fill 0.4s ease;
+  fill: rgb(80, 158, 59);
+}

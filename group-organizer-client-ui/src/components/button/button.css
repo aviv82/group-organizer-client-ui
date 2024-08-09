@@ -1,0 +1,27 @@
+.primary {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  transition: background-color 2s ease;
+  background-color: rgb(143, 180, 249);
+  border: none;
+  border: 1px solid rgb(116, 157, 247);
+  border-radius: 6px;
+  cursor: pointer;
+  color: aliceblue;
+}
+
+.primary:hover {
+  background-color: rgb(217, 229, 252);
+  color: rgb(97, 178, 248);
+}
+
+.primary:active {
+  transition: background-color 0.4s ease;
+  background-color: rgb(28, 140, 246);
+}
+
+.icon {
+  background: none;
+  border: none;
+  padding: 0;
+}
