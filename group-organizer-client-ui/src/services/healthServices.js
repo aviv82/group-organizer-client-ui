@@ -14,3 +14,8 @@ export const update = async (id = 0, data = {}) => {
   const result = await http.put(`/members/${id}`, data);
   return result;
 };
+
+export const deleteItem = async (id = 0) => {
+  const result = await http.delete(`/members/${id}`);
+  return result;
+};
