@@ -15,7 +15,7 @@ export const MembersPage = () => {
 
   useEffect(() => {
     getItems();
-  }, []);
+  }, [isModal]);
 
   const getItems = async () => {
     const result = await getHealth();
@@ -25,6 +25,7 @@ export const MembersPage = () => {
   const handleSubmit = async (request = {}) => {
     const result = await create(request);
     console.log("member created:", result.data);
+    toggleModal();
   };
 
   const toggleModal = () => {
