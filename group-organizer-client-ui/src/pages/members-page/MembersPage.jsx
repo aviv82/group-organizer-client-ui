@@ -62,6 +62,7 @@ export const MembersPage = () => {
           type={modalType.current}
           item={modalItem.current}
           handleCreate={handleCreate}
+          handleEdit={handleEdit}
           onClose={toggleModal}
         />
       )}

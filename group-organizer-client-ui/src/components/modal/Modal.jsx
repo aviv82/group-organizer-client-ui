@@ -7,6 +7,7 @@ export const Modal = ({
   type = MODAL_TYPES.Create,
   item = {},
   handleCreate = () => console.log("create"),
+  handleEdit = () => console.log("edit"),
   onClose = () => console.log("close"),
 }) => {
   const [request, setRequest] = useState({
@@ -24,6 +25,10 @@ export const Modal = ({
 
   const onSubmitCreate = () => {
     handleCreate(request);
+  };
+
+  const onSubmitEdit = () => {
+    handleEdit(item.MemberId, request);
   };
 
   return (
@@ -91,7 +96,10 @@ export const Modal = ({
           </form>
         </div>
         <div className="modal-foot">
-          <Button text="submit" action={onSubmitCreate} />
+          <Button
+            text="submit"
+            action={type === MODAL_TYPES.Create ? onSubmitCreate : onSubmitEdit}
+          />
           <Button text="close" style="cancel" action={onClose} />
         </div>
       </div>
